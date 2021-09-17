@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <title>Django web_rtc</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="username__items">
+        <h3 id="label-username" class="username">Enter your username</h3>
+        <form action="">
+            <input id="username" class="username__input" placeholder="Enter your username">
+            <button id="btn-join" class="username__button">Join Room</button>
+        </form>
+    </div>
+
+    <div id="video__display" class="video__display">
+        <div class="video__items__my">
+            <video id="local-video" style="float: left;" autoplay playsinline></video>
+        </div>
+    </div>
+
+    <div class="video__items">
+        <button id="btn-toggle-audio" class="video__items__button">Audio Mute</button>
+        <button id="btn-toggle-video" class="video__items__button">Video off</button>
+    </div>
+
+    <div class="chat__items">
+        <div id="chat">
+            <h3 class="chat__name">Chat</h3>
+            <div id="messages" class="messages">
+                <ul id="message-list" class="message__list"></ul>
+            </div>
+            <form class="message__form" onsubmit="return false;">
+                <input id="msg" class="message__input">
+                <button id="btn-send-msg" class="message__button">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<script src="{% static 'index.js' %}"></script>
+</body>
+</html>
