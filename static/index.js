@@ -328,6 +328,8 @@ function dcOnMessage(event) {
 }
 
 function createVideo(peerUsername) {
+    countVideo += 1
+
     var videoContainer = document.querySelector('#video__display')
 
     var remoteVideo = document.createElement('video')
