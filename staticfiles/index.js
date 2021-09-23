@@ -149,7 +149,8 @@ btnJoin.addEventListener('click', () => {
         wsStart = 'wss://'
     }
 
-    var endPoint = wsStart + loc.host + loc.pathname
+    // var endPoint = wsStart + loc.host + loc.pathname
+    var endPoint = 'ws://0.0.0.0:8000'
 
     webSocket = new WebSocket(endPoint)
 
@@ -169,7 +170,6 @@ btnJoin.addEventListener('click', () => {
 
 var localStream = new MediaStream()
 const localVideo = document.querySelector('#local-video')
-
 
 var userMedia = navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
@@ -328,8 +328,6 @@ function dcOnMessage(event) {
 }
 
 function createVideo(peerUsername) {
-    countVideo += 1
-
     var videoContainer = document.querySelector('#video__display')
 
     var remoteVideo = document.createElement('video')

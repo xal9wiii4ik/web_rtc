@@ -1,20 +1,25 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env_path = Path('.env')
+load_dotenv(dotenv_path=env_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jmzjj88q)$(i0vuuefrwg2&(v5carfnxt9yfg!che5==x+k%$b'
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG'))
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = str(os.environ.get('ALLOWED_HOSTS')).split(' ')
 
 
 # Application definition
@@ -127,9 +132,8 @@ CHANNEL_LAYERS = {
 
 STATIC_URL = '/static/'
 
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "staticfiles"),
 )
-
