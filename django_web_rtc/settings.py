@@ -1,4 +1,5 @@
 import os
+import mimetypes
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -20,7 +21,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = bool(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = str(os.environ.get('ALLOWED_HOSTS')).split(' ')
-
+# ALLOWED_HOSTS = ['0.0.0.0']
 
 # Application definition
 
@@ -120,9 +121,11 @@ USE_TZ = True
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # "BACKEND": "asgi_redis.RedisChannelLayer",
         'CONFIG': {
             # "hosts": [(REDIS_HOST, REDIS_PORT)],
-            "hosts": [('127.0.0.1', 6379)]
+            # "hosts": [('127.0.0.1', 6379)]
+            "hosts": [('redis', 6379)]
         },
     },
 }
@@ -130,10 +133,11 @@ CHANNEL_LAYERS = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 STATIC_URL = '/staticfiles/'
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = ''
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "staticfiles"),
 )
