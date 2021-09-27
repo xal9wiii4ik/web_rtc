@@ -150,7 +150,7 @@ btnJoin.addEventListener('click', () => {
     }
 
     // var endPoint = wsStart + loc.host + loc.pathname
-    var endPoint = 'ws://0.0.0.0:8000'
+    var endPoint = 'ws://0.0.0.0:8001'
 
     webSocket = new WebSocket(endPoint)
 
@@ -171,45 +171,45 @@ btnJoin.addEventListener('click', () => {
 var localStream = new MediaStream()
 const localVideo = document.querySelector('#local-video')
 
-var userMedia = navigator.mediaDevices.getUserMedia(constraints)
-    .then(stream => {
-        localStream = stream
-        localVideo.srcObject = localStream
-        localVideo.muted = true
-
-
-        let audioTrack = stream.getAudioTracks()
-        let videoTrack = stream.getVideoTracks()
-        audioTrack[0].enabled = true
-        videoTrack[0].enabled = true
-
-        btnToggleAudio.addEventListener('click', () => {
-            audioTrack[0].enabled = !audioTrack[0].enabled
-
-            if (audioTrack[0].enabled) {
-                btnToggleAudio.innerHTML = 'Audio Mute'
-
-                return
-            }
-
-            btnToggleAudio.innerHTML = 'Audio Unmute'
-        })
-
-        btnToggleVideo.addEventListener('click', () => {
-            videoTrack[0].enabled = !videoTrack[0].enabled
-
-            if (videoTrack[0].enabled) {
-                btnToggleVideo.innerHTML = 'Video off'
-
-                return
-            }
-
-            btnToggleVideo.innerHTML = 'Video on'
-        })
-
-    }).catch(error => {
-        console.log('Error media', error)
-    })
+// var userMedia = navigator.mediaDevices.getUserMedia(constraints)
+//     .then(stream => {
+//         localStream = stream
+//         localVideo.srcObject = localStream
+//         localVideo.muted = true
+//
+//
+//         let audioTrack = stream.getAudioTracks()
+//         let videoTrack = stream.getVideoTracks()
+//         audioTrack[0].enabled = true
+//         videoTrack[0].enabled = true
+//
+//         btnToggleAudio.addEventListener('click', () => {
+//             audioTrack[0].enabled = !audioTrack[0].enabled
+//
+//             if (audioTrack[0].enabled) {
+//                 btnToggleAudio.innerHTML = 'Audio Mute'
+//
+//                 return
+//             }
+//
+//             btnToggleAudio.innerHTML = 'Audio Unmute'
+//         })
+//
+//         btnToggleVideo.addEventListener('click', () => {
+//             videoTrack[0].enabled = !videoTrack[0].enabled
+//
+//             if (videoTrack[0].enabled) {
+//                 btnToggleVideo.innerHTML = 'Video off'
+//
+//                 return
+//             }
+//
+//             btnToggleVideo.innerHTML = 'Video on'
+//         })
+//
+//     }).catch(error => {
+//         console.log('Error media', error)
+//     })
 
 function getDataChannels(){
     var dataChannels = []
@@ -228,8 +228,9 @@ var messageInput = document.querySelector('#msg')
 btnSendMsg.addEventListener('click', sendMsgOnClick)
 
 function sendMsgOnClick(){
+    console.log(1)
     var message = messageInput.value
-
+    console.log(message)
     var li = document.createElement('li')
     li.appendChild(document.createTextNode('Me:     ' + message))
     li.classList.add('chat__message')

@@ -45,33 +45,27 @@ version: '3.7'
 
 services:
   redis:
+    restart: always
     image: redis
     command: redis-server
     ports:
       - '6379:6379'
   web:
+    restart: always
     build: .
-#    command: python manage.py runserver 0.0.0.0:8000
     command: gunicorn django_web_rtc.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - static_volume:/home/web/staticfiles
-      - media_volume:/home/web/mediafiles
+      - ./static_volume/:/staticfiles
+      - ./media_volume/:/mediafiles
     ports:
       - "8000:8000"
-#  worker_channels:
-#    build: .
-#    command: python manage.py runworker 2>>./daphneWorker.log >&2
-#    volumes:
-#      - static_volume:/home/web/staticfiles
-#      - media_volume:/home/web/mediafiles
-#    links:
-#      - redis
   channels:
+    restart: always
     build: .
-    command: set DJANGO_SETTINGS_MODULE="django_web_rtc.settings" && daphne -b 0.0.0.0 -p 8001 django_web_rtc.asgi:application
+    command: daphne -b 0.0.0.0 -p 8001 django_web_rtc.asgi:application
     volumes:
-      - static_volume:/home/web/staticfiles
-      - media_volume:/home/web/mediafiles
+      - ./static_volume/:/staticfiles
+      - ./media_volume/:/mediafiles
     ports:
       - "8001:8001"
     links:

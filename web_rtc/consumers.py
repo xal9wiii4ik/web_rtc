@@ -11,6 +11,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
     Chat between consumers
     """
 
+    # def __init__(self, *args, **kwargs):
+    #     super(AsyncWebsocketConsumer, self).__init__(*args, **kwargs)
+
+    groups = ['network_voting']
+
     async def connect(self):
         # self.room_name = self.scope['url_route']['kwargs']['room_name']
         # self.room_group_name = f'chat_{self.room_name}s'
