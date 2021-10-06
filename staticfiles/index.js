@@ -228,7 +228,6 @@ var messageInput = document.querySelector('#msg')
 btnSendMsg.addEventListener('click', sendMsgOnClick)
 
 function sendMsgOnClick(){
-    console.log(1)
     var message = messageInput.value
     console.log(message)
     var li = document.createElement('li')
@@ -309,13 +308,13 @@ function createOffer(peerUsername, receiver_channel_name) {
         })
 }
 
-function addLocalTracks(peer) {
-    localStream.getTracks().forEach(track => {
-        peer.addTrack(track, localStream)
-    })
-
-    return
-}
+// function addLocalTracks(peer) {
+//     localStream.getTracks().forEach(track => {
+//         peer.addTrack(track, localStream)
+//     })
+//
+//     return
+// }
 
 var messageList = document.querySelector('#message-list')
 
