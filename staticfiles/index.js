@@ -168,8 +168,8 @@ btnJoin.addEventListener('click', () => {
     })
 })
 
-var localStream = new MediaStream()
-const localVideo = document.querySelector('#local-video')
+// var localStream = new MediaStream()
+// const localVideo = document.querySelector('#local-video')
 
 // var userMedia = navigator.mediaDevices.getUserMedia(constraints)
 //     .then(stream => {
